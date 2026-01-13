@@ -1,0 +1,35 @@
+{
+  "name": "react-native-to-xml-converter",
+  "version": "0.0.1",
+  "description": "A converter from  react native to xml code",
+  "keywords": [
+    "react-native",
+    "xml",
+    "converter",
+    "android",
+    "development",
+    "hybrid",
+    "development\\"
+  ],
+  "homepage": "https://github.com/Adhidevudayakumar/react-native-to-xml-converter#readme",
+  "bugs": {
+    "url": "https://github.com/Adhidevudayakumar/react-native-to-xml-converter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adhidevudayakumar/react-native-to-xml-converter.git"
+  },
+  "license": "ISC",
+  "author": "Adhidev Udayakumar",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+     "build": "tsc",
+    "dev": "ts-node src/cli/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
