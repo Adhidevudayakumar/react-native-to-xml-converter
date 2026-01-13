@@ -1,15 +1,14 @@
 {
   "name": "react-native-to-xml-converter",
   "version": "0.0.1",
-  "description": "A converter from  react native to xml code",
+  "description": "A converter from react native to xml code",
   "keywords": [
     "react-native",
     "xml",
     "converter",
     "android",
     "development",
-    "hybrid",
-    "development\\"
+    "hybrid"
   ],
   "homepage": "https://github.com/Adhidevudayakumar/react-native-to-xml-converter#readme",
   "bugs": {
@@ -21,15 +20,28 @@
   },
   "license": "ISC",
   "author": "Adhidev Udayakumar",
-  "type": "module",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "bin": {
+    "rn-to-xml": "dist/cli/index.js"
+  },
   "scripts": {
-     "build": "tsc",
+    "build": "tsc",
     "dev": "ts-node src/cli/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.28.6",
+    "@babel/traverse": "^7.28.6",
+    "@babel/types": "^7.28.6",
+    "fs": "^0.0.1-security",
+    "open": "^11.0.0"
   }
 }
