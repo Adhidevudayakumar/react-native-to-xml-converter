@@ -23,10 +23,6 @@ function generateElement(node: XMLNode, depth: number): string {
   // Prepare attributes
   const attributes = { ...node.attributes };
   if (depth === 0) {
-    // Ensure xmlns is first by handling it specially during string generation
-    // We don't add it to attributes object to avoid sorting issues, 
-    // or we add it and ensure it sorts first.
-    // Let's handle it in the sorting logic.
     attributes['xmlns:android'] = 'http://schemas.android.com/apk/res/android';
   }
   
