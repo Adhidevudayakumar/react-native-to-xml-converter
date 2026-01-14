@@ -63,33 +63,31 @@ export default function Example() {
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:padding="20dp"
-    android:background="#f0f0f0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/view_1"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="#f0f0f0"
+    android:padding="20dp">
     <TextView
-        android:textSize="18sp"
-        android:textColor="#333"
+        android:id="@+id/text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_2">
-        Hello World
-    </TextView>
+        android:text="Hello World"
+        android:textColor="#333"
+        android:textSize="18sp"/>
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:id="@+id/view_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/view_3">
+        android:layout_marginTop="10dp">
         <TextView
+            android:id="@+id/text_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_4">
-            This is a test component
-        </TextView>
+            android:text="This is a test component"/>
     </LinearLayout>
 </LinearLayout>
 ```

@@ -20,38 +20,68 @@ function generateElement(node: XMLNode, depth: number): string {
   const indent = '    '.repeat(depth);
   const childIndent = '    '.repeat(depth + 1);
   
-  // Add xmlns for root element
+  // Prepare attributes
   const attributes = { ...node.attributes };
   if (depth === 0) {
+    // Ensure xmlns is first by handling it specially during string generation
+    // We don't add it to attributes object to avoid sorting issues, 
+    // or we add it and ensure it sorts first.
+    // Let's handle it in the sorting logic.
     attributes['xmlns:android'] = 'http://schemas.android.com/apk/res/android';
   }
   
-  // Build attribute string
+  // precise attribute order
+  const getAttrOrder = (key: string): number => {
+    if (key === 'xmlns:android') return 0;
+    if (key === 'android:id') return 1;
+    if (key === 'android:layout_width') return 2;
+    if (key === 'android:layout_height') return 3;
+    if (key === 'android:orientation') return 4;
+    return 10;
+  };
+
+  // Build attribute string with sorting
   const attrString = Object.entries(attributes)
+    .sort((a, b) => {
+      const orderA = getAttrOrder(a[0]);
+      const orderB = getAttrOrder(b[0]);
+      if (orderA !== orderB) return orderA - orderB;
+      return a[0].localeCompare(b[0]);
+    })
     .map(([key, value]) => `${key}="${escapeXml(value)}"`)
     .join('\n' + indent + '    ');
   
-  // Self-closing tag if no children and no text content
-  if (node.children.length === 0 && !node.textContent) {
-    return `${indent}<${node.tag}\n${indent}    ${attrString} />`;
-  }
+  // Decide whether to self-close
+  const hasChildren = node.children.length > 0;
+  // textContent might still be present for some elements if we didn't move it to attribute
+  const hasText = !!node.textContent; 
   
   // Opening tag
-  let xml = `${indent}<${node.tag}\n${indent}    ${attrString}>`;
+  let xml = `${indent}<${node.tag}`;
+  if (attrString) {
+    xml += `\n${indent}    ${attrString}`;
+  }
+  
+  if (!hasChildren && !hasText) {
+    xml += '/>';
+    return xml;
+  }
+  
+  xml += '>';
   
   // Text content
-  if (node.textContent) {
-    xml += `\n${childIndent}${escapeXml(node.textContent)}`;
+  if (hasText) {
+    xml += `\n${childIndent}${escapeXml(node.textContent!)}`;
   }
   
   // Children
-  if (node.children.length > 0) {
+  if (hasChildren) {
     xml += '\n';
     for (const child of node.children) {
       xml += generateElement(child, depth + 1) + '\n';
     }
     xml += indent;
-  } else if (node.textContent) {
+  } else if (hasText) {
     xml += '\n' + indent;
   }
   

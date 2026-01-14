@@ -71,6 +71,12 @@ export function buildXmlTree(jsxElement: t.JSXElement): XMLNode {
     }
   }
   
+  // Move text content to attribute for TextView and Button
+  if (textContent && (xmlTag === 'TextView' || xmlTag === 'Button')) {
+    allAttributes['android:text'] = textContent;
+    textContent = undefined;
+  }
+  
   return {
     tag: xmlTag,
     attributes: allAttributes,
