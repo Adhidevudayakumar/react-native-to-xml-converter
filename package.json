@@ -1,6 +1,6 @@
 {
   "name": "react-native-to-xml-converter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A converter from react native to xml code",
   "keywords": [
     "react-native",
