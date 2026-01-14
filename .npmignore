@@ -3,3 +3,9 @@ src
 tests
 .git
 .vscode
+Test-files
+example.ts
+output.json
+xml
+tsconfig.json
+tsup.config.ts

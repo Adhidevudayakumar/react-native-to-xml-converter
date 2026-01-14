@@ -24,3 +24,6 @@ Thumbs.db
 # Editor folders
 .vscode/
 .idea/
+
+*.tgz
+npm-debug.log*
